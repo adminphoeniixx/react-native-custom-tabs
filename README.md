@@ -15,56 +15,11 @@ Customization and detailed behavior refer to the [Usage](#Usage).
 ## Installation
 
 ```
-npm install react-native-custom-tabs --save
+yarn add https://github.com/adminphoeniixx/react-native-custom-tabs#develop
 ```
 
-To link the native module automatically, it is recommended that you use the [rnpm](https://github.com/rnpm/rnpm).
+Autolinking Support added for RN 0.60+
 
-```
-rnpm link
-```
-
-#### Android
-
-In Android, Add it in your **root** `build.gradle`([e.g. example](https://github.com/droibit/react-native-custom-tabs/blob/develop/example/android/build.gradle)) at the end of repositories:
-
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url "https://jitpack.io" }
-    }
-}
-```
-
-And, provide `CustomTabsPackage` in your Application class.
-
-```java
-import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
-
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.asList(
-            ...,
-            new CustomTabsPackage()
-    );
-}
-```
-
-If you use version `0.1.5` or higher, change the **app** `build.gradle`.
-
-```groovy
-android {
-    ...
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
-}
-
-dependencies {
-    ...
-    compile "com.android.support:appcompat-v7:25.0.1"
-}
-```
 
 ## Usage
 
@@ -107,20 +62,28 @@ CustomTabs.openURL(url, {
     'my-custom-header': 'my custom header value'
   },
   forceCloseOnRedirection: true,
+  readerMode: false,
+  tintColor: '#000',
+  barTintColor: '#fff',
+  fromBottom: false,
 });
 ```
 
 The option to support:
 
-|property|type|default|description|
-|--------|----|-------|-----------|
-|toolbarColor|string|undefined|the Toolbar color. Supported formats are: #RRGGBB, #AARRGGBB, [etc](http://d.android.com/reference/android/graphics/Color.html#parseColor(java.lang.String)). |
-|enableUrlBarHiding|boolean|undefined|Enables the url bar to hide as the user scrolls down on the page.|
-|showPageTitle|boolean|undefined|Sets whether the title should be shown in the custom tab.|
-|enableDefaultShare|boolean|undefined|Whether to add a default shared items of the menu.|
-|animations|Object|undefined|Sets the exit and start animations. ANIMATIONS_FADE, ANIMATIONS_SLIDE or custom object with string properties `startEnter`, `startExit`, `endEnter` and `endExit` each defining an Android animation resource ID to use for the animations, such as `slide_in_right`.|
-|headers|Object|undefined|Sets any custom headers that should be used.|
-|forceCloseOnRedirection|boolean|undefined|Workaround that Custom Tabs doesn't close on redirecting back to app scheme.([#11](https://github.com/droibit/react-native-custom-tabs/pull/11))|
+|property|type|default|platform|description|
+|--------|----|-------|--------|-----------|
+|toolbarColor|string|undefined|Android|the Toolbar color. Supported formats are: #RRGGBB, #AARRGGBB, [etc](http://d.android.com/reference/android/graphics/Color.html#parseColor(java.lang.String)). |
+|enableUrlBarHiding|boolean|undefined|Android|Enables the url bar to hide as the user scrolls down on the page.|
+|showPageTitle|boolean|undefined|Android|Sets whether the title should be shown in the custom tab.|
+|enableDefaultShare|boolean|undefined|Android|Whether to add a default shared items of the menu.|
+|animations|Object|undefined|Android|Sets the exit and start animations. ANIMATIONS_FADE, ANIMATIONS_SLIDE or custom object with string properties `startEnter`, `startExit`, `endEnter` and `endExit` each defining an Android animation resource ID to use for the animations, such as `slide_in_right`.|
+|headers|Object|undefined|Android|Sets any custom headers that should be used.|
+|forceCloseOnRedirection|boolean|undefined|Android|Workaround that Custom Tabs doesn't close on redirecting back to app scheme.([#11](https://github.com/droibit/react-native-custom-tabs/pull/11))|
+|tintColor|string|undefined|IOS|A String containing a hex, rgba or rgba color to use for the browser controls|
+|barTintColor|string|undefined|IOS|A String containing a hex, rgba or rgba color to use for the background of the browser controls (only available on iOS 10 and higher)|
+|readerMode|boolean|undefined|IOS|A boolean indicating to use Safari's Reader Mode if available|
+|fromBottom|boolean|undefined|IOS|A boolean indicating to open the Safari View from the bottom|
 
 
 `undefined` property is default behavior of the Custom Tabs.
